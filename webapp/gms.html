@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link
+                                rel="stylesheet"
+                                href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+                                />
+                <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+                <link
+                                rel="stylesheet"
+                                href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css"
+                                />
+                <script
+                                src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-
+                                     machine.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+                <style type="text/css">
+#map {
+        height: 100vh;
+        width: 100vw;
+}
+#displayRouteBtn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: white;
+        padding: 10px;
+        background-color: black; /* Change the background color to black */
+        border: none;
+        cursor: pointer;
+        z-index: 9999; /* Set a high z-index to make sure the button is on top of other elements */
+}
+#menu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+}
+#menu ul {
+        list-style-type: disc;
+        padding: 0;
+        margin: 0;
+}
+#menu li {
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        transition: background-color 0.3s ease;
+        margin-left: 20px;
+}
+#menu li:hover {
+        background-color: #f1f1f1;
+}
+.hidden {
+        display: none;
+}
+#binForm {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+}
+#binForm label {
+        display: block;
+        margin-bottom: 10px;
+}
+#binForm input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+}
+#binForm button[type="submit"] {
+        display: block;
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: blue;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+}
+#closeForm {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+}
+#closeForm:hover {
+        color: red;
+}
+                </style>
+        </head>
+        <body>
+                <div id="map"></div>
+                <div id="menu">
+                        <ul>
+                                <li id="shortestRoute">Shortest Route</li>
+                                <li id="addBin">Add Bin</li>
+                                <li id="logout">Logout</li>
+                        </ul>
+                </div>
+                <form id="binForm" class="hidden">
+                        <span id="closeForm">&times;</span>
+                        <label for="binID">Bin ID:</label>
+                        <input type="text" id="binID" name="binID" required />
+                        <label for="latitude">Latitude:</label>
+                        <input type="text" id="latitude" name="latitude" required />
+                        <label for="longitude">Longitude:</label>
+                        <input type="text" id="longitude" name="longitude" required />
+                        <label for="fill">Enter a random fill (%):</label>
+                        <input type="text" id="fill" name="fill" required />
+                        <label for="weight">Enter a random weight (g):</label>
+                        <input type="text" id="weight" name="weight" required />
+                        <button type="submit">Add Bin</button>
+                </form>
+                <script src="interface.js"></script>
+        </body>
+</html>
